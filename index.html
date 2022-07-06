@@ -49,24 +49,28 @@
 			text-decoration: none;
 		}	
     </style>
+
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<h1 class="masthead">Time of Day</h1>
+		<h1 class="masthead"><u>Time of Day Project</u></h1>
 
 	</header>
     <main>
 	 <header>
-		 <h3>A JavaScript project by Michael Bilhu</h3>
-		 <h3 id="greeting">Greeting goes here</h3>
+		<h2 id="time">The time is:</h2>
+		<h3>A JavaScript project by Michael Bilhu</h3>
+		<h3 id="greeting">Greetings, anyone who's visiting this site</h3>
 	</header>
-	 <p>This page demonstrates how to use JavaScript to display different times of the day on a webpage using JavaScript</p>
-	 <p>In our code, the img source is labeleb as flexible, which means it can change. with this, we made sure we inputted a photo for the morning, afternoon, evening, and nighttime. </p>
-	  <p>I also included an if-else statement to change the style and pictures 
-		depending on the time of day as well. I was able to do this by using the document object model to 
-		connect the date and time to the style and picture.</p>
-	<p>Comeback to this website later on the day, you'll see a different greeting and photo when you visit!</p>
-	 
+    <p>This page demonstrates how to use JavaScript to display different times of the day on a webpage using JavaScript</p>
+    <p>In our code, the img source is labeleb as flexible, which means it can change. with this, we made sure we inputted a photo for the morning, afternoon, evening, and nighttime. </p>
+     <p>I also included an if-else statement to change the style and pictures 
+       depending on the time of day as well. I was able to do this by using the document object model to 
+       connect the date and time to the style and picture.</p>
+   <p>Comeback to this website later on the day, you'll see a different greeting and photo when you visit!</p>
+    
+	 <!-- <p><a href="https://github.com/jasonarzona/time-of-day">Here is a link to the GitHub for this project.</a></p> -->
 	  <img id="pic" src="images/afternoon.jpg" alt="Time of Day Image" class="flexible" />
      <footer>
       <p><small>&copy; 2021- <span id="copyright"></span> by 
@@ -79,68 +83,91 @@
  <script>
 
 
-        /*
-			Morning (5am to 12 noon)
-           Afternoon (12 noon to 6pm)
-           Evening (6pm to 11pm)
-             Night (11pm to 5am)
-
-		*/	
-      let myDate = new Date();
-      let myCopyright = myDate.getFullYear();
-	  // myDate = new Date ();
-	  let myHour = myDate.getHours();
-	  let myGreeting = "";
-	  let myColor = "";
-	  let myPic="";
 
 
-	  //remove following line, only for testing 
 
-	   myHour = 6; 
+/*
+Morning (5am to 12 noon)
+Afternoon (12 noon to 6pm)
+Evening (6pm to 11pm)
+Night (11pm to 5am)
+*/
 
-	if(myHour > 5 && myHour < 12){//morning
-    	//alert ("good morning!");
-		myGreeting= "Good morning!";
+
+
+let myDate = new Date();
+	let myCopyright = myDate.getFullYear();
+	let myHour = myDate.getHours();
+	let myMinutes = String(myDate.getMinutes()).padStart(2, '0');
+	let myGreeting = "";
+	let myColor = "";
+	let myPic ="";
+	let day = myDate.getDay();
+	let myTime = "";
+
+// // remove following line, only for testing
+// myHour = 13;
+
+	// morning
+	if((myHour >= 5) & (myHour <= 12)){
+		myGreeting = "Good morning,";
 		myColor = "orange";
-		myPic="morning.jpg";
-
-	}else if(myHour > 12 && myHour < 18){//afternoon
- 		//alert("good afternoon!");
-		 myGreeting = "Good Afternoon!";
-		 myColor="yellow";
-		 myPic="afternoon.jpg";
-
-	
-
+		myPic = "morning.jpg";
+	// afternoon
+	}else if ((myHour >= 12) & (myHour <= 18)){
+		myGreeting = "Good afternoon, ";
+		myColor = "yellow";
+		myPic = "afternoon.jpg";
+	// evening
+	}else if ((myHour >= 18) & (myHour <= 23)){
+		myGreeting = "Good evening, Ma'am/Sir!";
+		myColor = "brown";
+		myPic = "evening.jpg";
+	}else{
+		myGreeting = "Good night,!";
+		myColor = "blue";
+		myPic = "night.jpg";
 	}
-	  else if (myHour >= 18 && myHour < 23){
-		  myGreeting= "It is the Evening";
-		  myColor="red";
-		  myPic="evening.jpg";
-	  }
 
-	  else{
-			myGreeting = "Good Night!";
-			myPic = "night.jpg";
-			myColor = "Purple";
-	  }
+// // remove following line, only for testing
+// day = 6;
 
-	  	//the pic needs images/ in order to work
-		 myPic = "images/" + myPic;
+	switch (day) {
+  		case 0:
+    		myTime = "Today is Sunday and the time is " + myHour + ":" + myMinutes;
+    		break;
+ 		 case 1:
+    		myTime = "Today is Monday and the time is " + myHour + ":" + myMinutes;
+    		break;
+  		case 2:
+     		myTime = "Today is Tuesday and the time is " + myHour + ":" + myMinutes;
+   			 break;
+		case 3:
+			myTime = "Today is Wednesday and the time is " + myHour + ":" + myMinutes;
+			break;
+		case 4:
+			myTime = "Today is Thursday and the time is " + myHour + ":" + myMinutes;
+			break;
+		case 5:
+			myTime = "Today is Friday and the time is " + myHour + ":" + myMinutes;
+			break;
+		case 6:
+			myTime = "Today is Saturday and the time is " + myHour + ":" + myMinutes;
+	}
+
+	//the pic needs images/ in order to work
+	myPic = "images/" + myPic;
+
+	// alert(myCopyright);
+	// console.log(myCopyright);
+	document.getElementById("copyright").innerHTML = myCopyright;
+	document.getElementById("greeting").innerHTML = myGreeting;
+	document.querySelector("html").style.backgroundColor = myColor;
+	document.getElementById("pic").src = myPic;
+	document.getElementById("time").innerHTML = myTime;
 
 
 
-
-     //alert(myPic);
-
-
-	 // alert(myCopyright);
-	 console.log(myCopyright);
-	 document.getElementById("copyright").innerHTML = myCopyright;
-	 document.getElementById("greeting").innerHTML = myGreeting;
-	 document.querySelector("html").style.backgroundColor = myColor;
-	 document.getElementById("pic").src = myPic;
 
     //https://tinyurl.com/dynamic-html-checker
     document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
