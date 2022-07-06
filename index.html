@@ -108,26 +108,33 @@ let myDate = new Date();
 // // remove following line, only for testing
 // myHour = 13;
 
-	// morning
-	if((myHour >= 5) & (myHour <= 12)){
-		myGreeting = "Good morning,";
-		myColor = "orange";
-		myPic = "morning.jpg";
-	// afternoon
-	}else if ((myHour >= 12) & (myHour <= 18)){
-		myGreeting = "Good afternoon, ";
-		myColor = "yellow";
-		myPic = "afternoon.jpg";
-	// evening
-	}else if ((myHour >= 18) & (myHour <= 23)){
-		myGreeting = "Good evening, Ma'am/Sir!";
-		myColor = "brown";
-		myPic = "evening.jpg";
-	}else{
-		myGreeting = "Good night,!";
-		myColor = "blue";
-		myPic = "night.jpg";
-	}
+	
+	if(myHour > 5 && myHour < 12){//morning
+        //alert ("good morning!");
+        myGreeting= "Good morning!";
+        myColor = "orange";
+        myPic="morning.jpg";
+
+    }else if(myHour > 12 && myHour < 18){//afternoon
+        //alert("good afternoon!");
+         myGreeting = "Good Afternoon!";
+         myColor="yellow";
+         myPic="afternoon.jpg";
+
+    
+
+    }
+      else if (myHour >= 18 && myHour < 23){//evening
+          myGreeting= "It is the Evening";
+          myColor="brown";
+          myPic="evening.jpg";
+      }
+
+      else{//night
+            myGreeting = "Good Night!";
+            myPic = "night.jpg";
+            myColor = "blue";
+      }
 
 // // remove following line, only for testing
 // day = 6;
